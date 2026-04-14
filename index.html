@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
     <style>
         body { 
             font-family: "Times New Roman", Times, serif; 
-            line-height: 1.5; 
+            line-height: 1.6; 
             color: #0d1b2a; 
             background-color: #f0f4f8; 
             margin: 0; 
@@ -61,7 +61,7 @@
             font-style: italic;
         }
 
-        /* Contenedores circulares para la etapa de hardware/procesamiento */
+        /* Contenedores circulares para la etapa de IoT (Punto 5) */
         .process-circles {
             display: flex;
             justify-content: space-around;
@@ -77,19 +77,20 @@
             color: white;
             border-radius: 50%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 15px;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 1rem;
             border: 4px solid var(--sky);
             transition: transform 0.3s;
         }
 
         .circle:hover { transform: scale(1.05); }
 
-        /* Cajas de datos técnicos */
+        /* Cajas de datos técnicos (Rectángulos) */
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -102,14 +103,6 @@
             border-left: 6px solid var(--navy);
             padding: 20px;
             border-radius: 4px;
-        }
-
-        .highlight-box {
-            background-color: #f1f8e9;
-            border: 1px dashed var(--navy);
-            padding: 15px;
-            margin: 10px 0;
-            font-weight: bold;
         }
 
         footer {
@@ -130,150 +123,176 @@
 
 <header>
     <h1>EOG ASSIST: EYE MOVEMENT COMMUNICATION SYSTEM</h1>
-    <p>Biomedical Instrumentation & IoT Integration | Version 1.0</p>
 </header>
 
 <div class="main-container">
 
     <section>
         <h2>1. Project Summary</h2>
-        <p><strong>Clinical Problem:</strong> Patients in bedridden states (e.g., with neuromuscular diseases) have reduced or zero mobility and severe speech limitations, making it impossible for them to communicate basic needs independently to their caregivers.</p>
-        <p><strong>Value Proposition:</strong> The system takes advantage of eye movement—one of the few motor functions preserved in these patients—to measure electrooculography (EOG) signals. These voltage variations are translated into commands sent in real-time via IoT technology, providing a non-invasive, accessible, and low-cost communication channel that substantially increases the patient's quality of life and autonomy.</p>
-        <p><em>Last Update: April 13, 2026</em></p>
+        <p><strong>Clinical problem:</strong> Patients in a bedridden state have reduced mobility and severe or no speech capabilities, making them unable to efficiently communicate their basic needs.</p>
+        <p><strong>Value proposition:</strong> The system uses electrooculography (EOG) signals to translate eye movements into automated commands sent in real time via IoT, providing a non-invasive, accessible, and low-cost communication alternative.</p>
     </section>
 
     <section>
-        <h2>2. Device / Sensor / IoT Equipment</h2>
-        <div class="info-grid">
-            <div class="data-card">
-                <h3>Hardware Components</h3>
-                <ul>
-                    <li><strong>Electrodes:</strong> Ag/AgCl surface electrodes.</li>
-                    <li><strong>Amplification:</strong> AD620 High-precision instrumentation amplifier.</li>
-                    <li><strong>Filtering & Control:</strong> TL084 or LM741 Op-Amps.</li>
-                    <li><strong>Processing:</strong> Arduino microcontroller for digitalization.</li>
-                </ul>
-            </div>
-            <div class="data-card">
-                <h3>Technical Specifications</h3>
-                <ul>
-                    <li><strong>Variable:</strong> Ocular electrical potential (Corneo-retinal dipole).</li>
-                    <li><strong>Measurement Range:</strong> 10 µV to 5 mV.</li>
-                    <li><strong>Clinical Resolution:</strong> 10 µV.</li>
-                    <li><strong>Sampling Rate:</strong> 250 Hz (Nyquist compliant for signals < 50 Hz).</li>
-                </ul>
-            </div>
-        </div>
-        <h3>Power Source</h3>
-        <p>Requires a symmetric power source (± 12V) for analog stages and 5V/3.3V for IoT modules. Estimated global consumption is <strong>low (&lt; 500 mW)</strong>.</p>
-    </section>
-
-    <section>
-        <h2>3. Clinical Data Management & Flow</h2>
-        <p>The system utilizes a <strong>continuous streaming</strong> pipeline where the ocular dipole position is measured in real-time. Data flows through these key stages:</p>
+        <h2>2. Device / Sensor / IoT Equipment Description</h2>
         
-        <div class="process-circles">
-            <div class="circle">Differential Amplification (G ~ 1000)</div>
-            <div class="circle">Active Low-Pass Filtering (52 Hz)</div>
-            <div class="circle">Analog Threshold Comparison</div>
-            <div class="circle">Cloud Streaming (JSON via Wi-Fi)</div>
+        <div class="info-grid">
+            <div class="data-card">
+                <h3>Sensors and Devices</h3>
+                <ul>
+                    <li>1 AD620 instrumentation amplifier</li>
+                    <li>TL084 operational amplifiers</li>
+                    <li>Arduino</li>
+                    <li>Surface electrodes (Ag/AgCl)</li>
+                </ul>
+            </div>
+            <div class="data-card">
+                <h3>Physiological variable measured</h3>
+                <ul>
+                    <li>Ocular electrical potential (EOG)</li>
+                    <li>Unit: Volts (V-mV)</li>
+                </ul>
+            </div>
         </div>
 
         <div class="info-grid">
             <div class="data-card">
-                <h3>Connectivity & Redundancy</h3>
-                <p><strong>Loss of Connectivity Strategy:</strong> Local buffer storage in the microcontroller to retain alerts, followed by delayed synchronization with the cloud once Wi-Fi is restored.</p>
+                <h3>Measurement & Sampling</h3>
+                <ul>
+                    <li><strong>Measurement range:</strong> 10 µV to 5 mV</li>
+                    <li><strong>Minimum required resolution:</strong> 10 µV</li>
+                    <li><strong>Sampling frequency:</strong> 250 Hz. EOG signals are low frequency (<50 Hz), so this rate avoids aliasing and captures dynamic changes.</li>
+                </ul>
             </div>
             <div class="data-card">
-                <h3>Auditory Records</h3>
-                <p><strong>Audit Logs:</strong> Cloud platform (Grafana) maintains logs with timestamps, User ID, and specific actions (e.g., "Thirst command activated") for traceability.</p>
+                <h3>Communication Protocol</h3>
+                <ul>
+                    <li>WiFi</li>
+                    <li>Protocols: HTTP or MQTT for IoT cloud connectivity</li>
+                </ul>
             </div>
         </div>
+
+        <div class="info-grid">
+            <div class="data-card">
+                <h3>Power supply</h3>
+                <ul>
+                    <li>Analog stage: ±12 V</li>
+                    <li>Transmission module: 3.3V to 5V</li>
+                    <li>Estimated consumption: Low (<500 mW)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>3. Clinical Data Management and Flow</h2>
+        <h3>Data pipeline</h3>
+        <p><strong>Continuous streaming:</strong> The EOG signal changes in real time according to eye movement relative to the electrodes.</p>
+        <h3>On-device preprocessing:</h3>
+        <ul>
+            <li>Differential amplification (high CMRR)</li>
+            <li>Low-pass filtering</li>
+            <li>Comparators for direction detection</li>
+        </ul>
     </section>
 
     <section>
         <h2>4. Regulations and Compliance</h2>
         <ul>
-            <li><strong>IEC 60601 (Electrical Safety):</strong> Critical for isolating the patient from electrical shock or leakage currents when placing electrodes on the head.</li>
-            <li><strong>ISO 13485 (Quality Management):</strong> Guidelines for biomedical instrumentation design and manufacturing practices.</li>
-            <li><strong>Data Protection (HIPAA-like):</strong> Secure Wi-Fi channels to protect home privacy.</li>
+            <li>IEC 60601</li>
+            <li>ISO 13485</li>
+            <li>Data protection</li>
         </ul>
-        <div class="highlight-box">
-            Risk Classification: Class II (Non-invasive monitoring device).
-        </div>
-        <p><em>Out of Scope: FDA/COFEPRIS approvals are not included in this proof-of-concept due to time and financial constraints.</em></p>
+        <h3>Out-of-scope regulations:</h3>
+        <ul>
+            <li>FDA approval</li>
+            <li>COFEPRIS: Health registration</li>
+        </ul>
+        <p><strong>Device classification:</strong> Class II</p>
     </section>
 
     <section>
         <h2>5. IoT System Technical Architecture</h2>
+        <h3>System layers</h3>
+        
+        <div class="process-circles">
+            <div class="circle">Perception</div>
+            <div class="circle">Connectivity</div>
+            <div class="circle">Processing</div>
+            <div class="circle">Application</div>
+        </div>
+
+        <h3>Non-functional requirements</h3>
         <ul>
-            <li><strong>Perception Layer:</strong> Ag/AgCl electrodes, AD620 amplifier, and ADC on Arduino.</li>
-            <li><strong>Connectivity Layer:</strong> Wi-Fi module using MQTT/HTTP protocols.</li>
-            <li><strong>Processing Layer:</strong> <strong>Edge Computing</strong> for noise filtering and thresholding; <strong>Cloud Computing</strong> for visualization and alert routing.</li>
-            <li><strong>Application Layer:</strong> Grafana Dashboard for real-time voltage monitoring and caregiver alerts.</li>
+            <li><strong>Maximum latency:</strong> <1 s</li>
+            <li><strong>System availability:</strong> 95%</li>
+            <li><strong>Scalability:</strong> 1 single user</li>
         </ul>
     </section>
 
     <section>
-        <h2>6. Use (or Non-use) of Artificial Intelligence</h2>
-        <p>The decision was made to <strong>NOT use AI</strong> for this version of the prototype.</p>
-        <h3>Justification</h3>
-        <p>Rule-based logic is sufficient because the EOG signal has a direct linear relationship with the gaze angle (up to 30°). Static thresholds are highly efficient and predictable.</p>
-        <div class="info-grid">
-            <div class="data-card">
-                <h3>Avoided Risks</h3>
-                <ul>
-                    <li>Eliminates "Black Box" effects.</li>
-                    <li>Avoids algorithmic bias and over-fitting.</li>
-                    <li>No massive training data dependency.</li>
-                </ul>
-            </div>
-            <div class="data-card">
-                <h3>Advantages</h3>
-                <ul>
-                    <li>Lower computational cost.</li>
-                    <li>Instantaneous processing (Edge).</li>
-                    <li>Easier to audit under medical standards.</li>
-                </ul>
-            </div>
-        </div>
+        <h2>6. No Use of Artificial Intelligence</h2>
+        <h3>Why is rule-based or threshold logic sufficient?</h3>
+        <p>EOG is directly linear with gaze angle for deviations up to approximately 30°. Using operational amplifiers configured as voltage comparators establishes efficient static thresholds for direction (e.g., positive = right, negative = left) without complex algorithmic processing.</p>
+        
+        <h3>Is there clinical evidence supporting these thresholds?</h3>
+        <p>Yes, clinical guidelines from the American Academy of Sleep Medicine (AASM) support lateral electrode placement and document that eye movements generate waveforms with opposite phases or polarities.</p>
+        
+        <h3>Risks avoided by not using AI</h3>
+        <p>Black box effect, algorithmic bias and dependency on prior data collection for training across different patients.</p>
+        
+        <h3>When would AI be appropriate in the future?</h3>
+        <p>If there is a need to decode rapid patterns, classify complex noise (such as intentional blinks), or use smartphone cameras (computer vision) to eliminate facial electrodes.</p>
+        
+        <h3>Advantages</h3>
+        <p>Greater transparency, lower computational cost, easier auditing. The circuit behavior is fully predictable and explainable, with reduced latency and simpler validation under medical hardware regulations.</p>
     </section>
 
     <section>
-        <h2>7. Users, Context & Ethics</h2>
-        <p><strong>Primary User:</strong> Bedridden patients with neuromuscular diseases. <strong>Secondary User:</strong> Caregivers or healthcare professionals.</p>
-        <div class="data-card">
-            <h3>Informed Consent</h3>
-            <p>A formal document will be presented to the patient or legal guardian explaining the non-invasive nature of biopotential collection, cloud data transmission, and log security.</p>
-        </div>
-        <h3>Equity Consideration</h3>
-        <p>Bioelectric EOG measures the retinal dipole. It does not rely on optical cameras, making it equitable across different skin tones, ethnicities, and facial physical characteristics.</p>
+        <h2>7. Users, Clinical Context, and Ethical Considerations</h2>
+        <h3>Informed consent</h3>
+        <p>Explaining in non-technical language the non-invasive nature of EOG biopotential collection, the purpose of transmitting commands to the cloud, the technical limitations of the prototype, and the commitment to secure data handling.</p>
+        
+        <h3>Clinical risk analysis</h3>
+        <ul>
+            <li><strong>False positive (incorrect message):</strong> A blink or muscle spasm activates the threshold and sends an unintended command. <em>Consequence:</em> Caregiver fatigue and alarm overload.</li>
+            <li><strong>False negative (ignored need):</strong> The patient performs the eye movement, but a dry electrode or baseline drift hides the signal. <em>Consequence:</em> Patient distress due to unmet physiological needs.</li>
+        </ul>
+
+        <h3>Equity considerations</h3>
+        <p>EOG measures the retinal dipole, so it is independent of skin tone, ethnicity, or facial visual characteristics.</p>
     </section>
 
     <section>
-        <h2>8. Scope, Limitations & Future Work</h2>
+        <h2>8. Scope, Limitations, and Future Work</h2>
+        
         <div class="info-grid">
-            <div>
-                <h3>In Scope</h3>
-                <p>Functional analog prototype, Wi-Fi transmission, real-time Grafana visualization, and basic threshold-based alerts (Right/Left gaze).</p>
+            <div class="data-card">
+                <h3>In scope</h3>
+                <p>Delivery of an analog prototype that captures horizontal and vertical eye biopotentials. Includes wireless transmission to an IoT server and real-time visualization in Grafana with basic alert triggering.</p>
             </div>
-            <div>
-                <h3>Limitations</h3>
-                <p>Susceptibility to facial muscle noise (EMG), electrode impedance changes over time, and environmental electrical interference.</p>
+            
+            <div class="data-card">
+                <h3>Out of scope</h3>
+                <p>Medical certifications, commercial PCB design and manufacturing, and mobile app development. This is due to time constraints, limited financial resources, and clinical regulations requiring extensive testing and validation.</p>
             </div>
         </div>
+
+        <h3>Hardware or data model limitations</h3>
+        <p>Noise, user movement, electrode dependency.</p>
+
         <h3>Future Roadmap</h3>
         <ul>
-            <li>Implementation of digital signal processing (DSP) for noise reduction.</li>
-            <li>Miniaturization into a wearable PCB.</li>
-            <li>Development of a mobile app for caregiver notifications.</li>
+            <li>Improve signal filtering.</li>
+            <li>Develop a mobile app capable of detecting eye movements using the phone camera without relying on electrodes.</li>
         </ul>
     </section>
 
 </div>
 
 <footer>
-    <p>EOG Assist Project - Temas Selectos III | University Presentation 2026</p>
+    <p>EOG Assist - Final Project</p>
 </footer>
 
 </body>
