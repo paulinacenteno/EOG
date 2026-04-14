@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EOG Assist - Dashboard del Proyecto</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
+        header { background: #0077b6; color: white; padding: 2rem; text-align: center; border-radius: 8px; margin-bottom: 20px; }
+        section { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h2 { color: #0077b6; border-bottom: 2px solid #caf0f8; padding-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+        .badge { background: #caf0f8; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>EOG Assist V 1.0</h1>
+    <p>Sistema de Comunicación por Movimiento Ocular</p>
+</header>
+
+<section>
+    <h2>1. Resumen y Problema Clínico</h2>
+    <p><strong>Problema:</strong> Pacientes con movilidad reducida o nula y limitaciones severas del habla (ej. enfermedades neuromusculares) no pueden comunicar necesidades básicas de forma independiente[cite: 2065, 2125].</p>
+    <p><strong>Propuesta de valor:</strong> Aprovecha el movimiento ocular conservado para medir señales de EOG y traducirlas en comandos IoT de bajo costo[cite: 2066, 2067, 2126, 2127].</p>
+</section>
+
+<section>
+    <h2>2. Gestión de Datos e IoT</h2>
+    <div class="grid">
+        <div>
+            <strong>Flujo de Datos:</strong>
+            <ul>
+                <li><strong>Estrategia de Red:</strong> Almacenamiento local temporal (buffer) ante pérdida de conexión con sincronización diferida[cite: 2148, 2194].</li>
+                <li><strong>Registro de Auditoría:</strong> Logs con timestamp exacto, ID de usuario y acción detectada para trazabilidad[cite: 2150, 2195].</li>
+            </ul>
+        </div>
+        <div>
+            <strong>Eficiencia Energética:</strong>
+            <ul>
+                <li><strong>Consumo:</strong> Ultrabajo (< 500 mW)[cite: 2077, 2137, 2167].</li>
+                <li><strong>Autonomía:</strong> Compatible con baterías estándar de ±12V para monitoreo continuo diario[cite: 2136, 2197].</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>3. Arquitectura Técnica y "No IA"</h2>
+    <p>Se utiliza <strong>lógica de reglas y umbrales</strong> en lugar de IA por las siguientes razones clínicas y técnicas:</p>
+    <ul>
+        <li><strong>Linealidad:</strong> El potencial EOG es lineal respecto al ángulo de mirada hasta los 30°, haciendo innecesarios algoritmos complejos[cite: 2107, 2168, 2198].</li>
+        <li><strong>Evidencia:</strong> Basado en estándares de la AASM sobre polaridades opuestas en movimientos laterales[cite: 2170, 2200].</li>
+        <li><strong>Transparencia:</strong> Se evita el sesgo de modelos y el efecto de "caja negra", facilitando auditorías médicas[cite: 2109, 2171, 2172, 2201].</li>
+        <li><strong>Costo:</strong> Procesamiento en el Edge casi instantáneo con menor costo computacional[cite: 2172, 2202].</li>
+    </ul>
+</section>
+
+<section>
+    <h2>4. Alcance y Ética</h2>
+    <p><strong>Consentimiento Informado:</strong> Se informa de manera clara sobre la naturaleza no invasiva de la recolección de biopotenciales y el resguardo seguro de los datos[cite: 2176, 2203, 2204].</p>
+    <p><strong>Fuera de Alcance:</strong> Quedan excluidos el diseño de PCB comercial y certificaciones regulatorias (FDA/COFEPRIS) por limitaciones de tiempo y recursos financieros del curso[cite: 2094, 2186, 2187, 2205, 2206].</p>
+</section>
+
+</body>
+</html>
