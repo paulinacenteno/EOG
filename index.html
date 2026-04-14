@@ -1,68 +1,224 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EOG Assist - Dashboard </title>
+    <title>EOG Assist - Final Project</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
-        header { background: #0077b6; color: white; padding: 2rem; text-align: center; border-radius: 8px; margin-bottom: 20px; }
-        section { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        h2 { color: #0077b6; border-bottom: 2px solid #caf0f8; padding-bottom: 10px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
-        .badge { background: #caf0f8; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.9em; }
+        /* Tipografía solicitada */
+        body { 
+            font-family: "Times New Roman", Times, serif; 
+            background-color: #f0f4f8; 
+            margin: 0; 
+            padding: 0; 
+            color: #0d1b2a;
+        }
+
+        /* Paleta de azules */
+        :root {
+            --dark-blue: #1b263b;
+            --mid-blue: #415a77;
+            --accent-blue: #778da9;
+            --light-blue: #e0e1dd;
+            --white: #ffffff;
+        }
+
+        header {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-blue);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        /* Secciones en rectángulos con bordes suaves */
+        section {
+            background-color: var(--white);
+            border: 1px solid var(--accent-blue);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--dark-blue);
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        h3 { color: var(--mid-blue); }
+
+        /* Estilo para los círculos de hardware/percepción según el PDF de formato */
+        .circles-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .circle-item {
+            background-color: var(--mid-blue);
+            color: white;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+            border: 4px solid var(--accent-blue);
+        }
+
+        /* Listas y rejillas */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .blue-box {
+            background-color: #e9ecef;
+            border-left: 5px solid var(--mid-blue);
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: var(--dark-blue);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>EOG Assist V 1.0</h1>
-    <p>"Sistema de Comunicación por Movimiento Ocular"</p>
+    <h1>EOG ASSIST: EYE MOVEMENT COMMUNICATION SYSTEM</h1>
+    <p>Version 1.0 | Final Project Presentation</p>
 </header>
 
-<section>
-    <h2>1. Resumen y Problema Clínico</h2>
-    <p><strong>Problema:</strong> Pacientes con movilidad reducida o nula y limitaciones severas del habla (ej. enfermedades neuromusculares) no pueden comunicar necesidades básicas de forma independiente[cite: 2065, 2125].</p>
-    <p><strong>Propuesta de valor:</strong> Aprovecha el movimiento ocular conservado para medir señales de EOG y traducirlas en comandos IoT de bajo costo[cite: 2066, 2067, 2126, 2127].</p>
-</section>
+<div class="container">
 
-<section>
-    <h2>2. Gestión de Datos e IoT</h2>
-    <div class="grid">
-        <div>
-            <strong>Flujo de Datos:</strong>
-            <ul>
-                <li><strong>Estrategia de Red:</strong> Almacenamiento local temporal (buffer) ante pérdida de conexión con sincronización diferida[cite: 2148, 2194].</li>
-                <li><strong>Registro de Auditoría:</strong> Logs con timestamp exacto, ID de usuario y acción detectada para trazabilidad[cite: 2150, 2195].</li>
-            </ul>
+    <section>
+        <h2>1. Project Summary</h2>
+        <p><strong>Clinical Problem:</strong> Patients with reduced mobility or severe speech limitations cannot communicate basic needs efficiently.</p>
+        <p><strong>Value Proposition:</strong> A non-invasive, low-cost system using electrooculography (EOG) to translate eye movements into real-time IoT commands.</p>
+        <div class="blue-box">
+            <p><em>Last Update: April 13, 2026</em></p>
         </div>
-        <div>
-            <strong>Eficiencia Energética:</strong>
-            <ul>
-                <li><strong>Consumo:</strong> Ultrabajo (< 500 mW)[cite: 2077, 2137, 2167].</li>
-                <li><strong>Autonomía:</strong> Compatible con baterías estándar de ±12V para monitoreo continuo diario[cite: 2136, 2197].</li>
-            </ul>
+    </section>
+
+    <section>
+        <h2>2. Device & Sensor Description</h2>
+        <div class="grid">
+            <div>
+                <h3>Hardware Components</h3>
+                <ul>
+                    <li>Instrumentation Amplifier: AD620</li>
+                    <li>Operational Amplifiers: TL084 / LM741</li>
+                    <li>Microcontroller: Arduino</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Technical Specs</h3>
+                <ul>
+                    <li><strong>Variable:</strong> Ocular Electrical Potential (EOG)</li>
+                    <li><strong>Range:</strong> 10 µV to 5 mV</li>
+                    <li><strong>Sampling:</strong> 250 Hz (Nyquist compliant)</li>
+                    <li><strong>Power:</strong> < 500 mW (Low consumption)</li>
+                </ul>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section>
-    <h2>3. Arquitectura Técnica y "No IA"</h2>
-    <p>Se utiliza <strong>lógica de reglas y umbrales</strong> en lugar de IA por las siguientes razones clínicas y técnicas:</p>
-    <ul>
-        <li><strong>Linealidad:</strong> El potencial EOG es lineal respecto al ángulo de mirada hasta los 30°, haciendo innecesarios algoritmos complejos[cite: 2107, 2168, 2198].</li>
-        <li><strong>Evidencia:</strong> Basado en estándares de la AASM sobre polaridades opuestas en movimientos laterales[cite: 2170, 2200].</li>
-        <li><strong>Transparencia:</strong> Se evita el sesgo de modelos y el efecto de "caja negra", facilitando auditorías médicas[cite: 2109, 2171, 2172, 2201].</li>
-        <li><strong>Costo:</strong> Procesamiento en el Edge casi instantáneo con menor costo computacional[cite: 2172, 2202].</li>
-    </ul>
-</section>
+    <section>
+        <h2>3. Clinical Data Pipeline</h2>
+        <p>Continuous real-time streaming for instant gaze detection.</p>
+        <div class="circles-container">
+            <div class="circle-item">Amplification<br>(High CMRR)</div>
+            <div class="circle-item">Low-Pass Filter<br>(52 Hz)</div>
+            <div class="circle-item">Threshold<br>Comparison</div>
+            <div class="circle-item">Cloud<br>Dashboard</div>
+        </div>
+        <h3>Connectivity Strategy</h3>
+        <p>The system includes a local buffer for connectivity loss, ensuring delayed synchronization with the Grafana cloud platform once Wi-Fi is restored.</p>
+    </section>
 
-<section>
-    <h2>4. Alcance y Ética</h2>
-    <p><strong>Consentimiento Informado:</strong> Se informa de manera clara sobre la naturaleza no invasiva de la recolección de biopotenciales y el resguardo seguro de los datos[cite: 2176, 2203, 2204].</p>
-    <p><strong>Fuera de Alcance:</strong> Quedan excluidos el diseño de PCB comercial y certificaciones regulatorias (FDA/COFEPRIS) por limitaciones de tiempo y recursos financieros del curso[cite: 2094, 2186, 2187, 2205, 2206].</p>
-</section>
+    <section>
+        <h2>4. Technical IoT Architecture</h2>
+        <div class="blue-box">
+            <p><strong>Perception Layer:</strong> Ag/AgCl Surface Electrodes and AD620 differential gain stage.</p>
+            <p><strong>Connectivity Layer:</strong> Wi-Fi via MQTT/HTTP protocols.</p>
+            <p><strong>Processing Layer:</strong> Edge computing for thresholding; Cloud computing for visualization.</p>
+            <p><strong>Application Layer:</strong> Grafana Dashboard with real-time caregiver alerts.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>5. Rule-Based Logic vs. AI</h2>
+        <p>The project specifically avoids Artificial Intelligence to prioritize:</p>
+        <ul>
+            <li><strong>Transparency:</strong> Avoiding "Black Box" algorithms for clinical safety.</li>
+            <li><strong>Efficiency:</strong> Linear gaze-voltage relationship (< 30°) allows simple rule-based triggers.</li>
+            <li><strong>Cost:</strong> Minimal computational load for real-time edge processing.</li>
+        </ul>
+        <p><em>Clinical Evidence: Supported by AASM standards regarding horizontal gaze polarities.</em></p>
+    </section>
+
+    <section>
+        <h2>6. Users & Ethics</h2>
+        <div class="grid">
+            <div>
+                <h3>User Profile</h3>
+                <p><strong>Primary:</strong> Bedridden patients with motor disabilities.</p>
+                <p><strong>Secondary:</strong> Caregivers and family members at home.</p>
+            </div>
+            <div>
+                <h3>Ethical Compliance</h3>
+                <ul>
+                    <li>IEC 60601 (Electrical Safety)</li>
+                    <li>ISO 13485 (Quality Management)</li>
+                    <li>Informed Consent processes</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>7. Scope & Roadmap</h2>
+        <h3>In Scope</h3>
+        <p>Detection of horizontal EOG movements, Wi-Fi communication, and real-time visualization in Grafana.</p>
+        <h3>Out of Scope</h3>
+        <p>Official medical certifications (FDA/COFEPRIS), commercial PCB manufacturing, and native mobile apps (due to time and resource constraints).</p>
+        <div class="blue-box">
+            <h3>Future Roadmap</h3>
+            <p>Miniaturization into a wearable device and integration of computer vision for electrode-free detection.</p>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>EOG Assist - Biomedical Engineering Project | University Presentation 2026</p>
+</footer>
 
 </body>
 </html>
