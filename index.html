@@ -191,6 +191,31 @@
             text-align: center;
         }
 
+        /* Grid de 3 rectángulos para la sección 7 (reemplazo de tabla) */
+        .grid-3-table {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .grid-3-item {
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
+            padding: 20px;
+            text-align: center;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .grid-3-item strong {
+            margin-bottom: 10px;
+            display: block;
+        }
+
         footer {
             background-color: var(--dark-blue);
             color: white;
@@ -202,6 +227,7 @@
         @media (max-width: 900px) {
             .grid-8 { grid-template-columns: repeat(2, 1fr); }
             .toc-grid { grid-template-columns: 1fr; }
+            .grid-3-table { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 600px) {
@@ -236,8 +262,9 @@
 
     <section id="sec1">
         <h2>1. Project Summary</h2>
-        <p><strong>Clinical problem:</strong> Patients in a bedridden state have reduced mobility and severe or no speech capabilities, making them unable to efficiently communicate their basic needs.</p>
-        <p><strong>Value proposition:</strong> The system uses electrooculography (EOG) signals to translate eye movements into automated commands sent in real time via IoT, providing a non-invasive, accessible, and low-cost communication alternative.</p>
+        <p><strong>Clinical problem:</strong> Patients in a bedridden state (e.g., with neuromuscular diseases) have reduced or zero mobility and severe speech limitations, making it impossible for them to communicate basic needs independently to their caregivers.</p>
+        <p><strong>Value proposition:</strong> The system takes advantage of eye movement—one of the few motor functions preserved in these patients—to measure electrooculography (EOG) signals. These voltage variations are translated into commands sent in real-time via IoT technology, providing a non-invasive, accessible, and low-cost communication channel that substantially increases the patient's quality of life and autonomy.</p>
+        <p><em>Last Update: April 13, 2026</em></p>
     </section>
 
     <section id="sec2">
@@ -248,7 +275,7 @@
                 <h3>Sensors and Devices</h3>
                 <ul>
                     <li>1 AD620 instrumentation amplifier</li>
-                    <li>TL084 operational amplifiers</li>
+                    <li>TL084 or LM741 operational amplifiers</li>
                     <li>Arduino</li>
                     <li>Surface electrodes (Ag/AgCl)</li>
                 </ul>
@@ -295,9 +322,10 @@
     <section id="sec3">
         <h2>3. Clinical Data Management and Flow</h2>
         <h3>Data pipeline</h3>
-        <p><strong>Continuous streaming:</strong> The EOG signal changes in real time according to eye movement relative to the electrodes.</p>
+        <p><strong>Continuous streaming:</strong> The EOG signal changes in real time according to eye movement relative to the electrodes. The potential changes instantly in real time as the eye's dipole changes position relative to the electrodes.</p>
         
         <h3>On-device preprocessing:</h3>
+        <p>It is performed entirely in hardware on the Edge.</p>
         <ul>
             <li>Differential amplification (high CMRR)</li>
             <li>Low-pass filtering</li>
@@ -400,7 +428,7 @@
     </section>
 
     <section id="sec7">
-        <h2>7. Users, Clinical Context, and Ethical Considerations</h2>
+        <h2>7. Users, Context, and Ethical Considerations</h2>
         <p><strong>User profile:</strong> Primary: Patient. Secondary: Caregiver, family member, or healthcare staff.</p>
         <p><strong>Usage environment:</strong> Home.</p>
 
@@ -408,23 +436,20 @@
         <p>Before implementing the device, a form will be provided to the patient or legal guardian explaining in clear, non-technical language the non-invasive nature of EOG biopotential collection, the purpose of transmitting commands to the cloud, the technical limitations of the prototype, and the commitment to secure data handling.</p>
 
         <h3>Clinical risk analysis</h3>
-        <table>
-            <tr>
-                <th>False positive</th>
-                <th>False negative</th>
-                <th>Consequence</th>
-            </tr>
-            <tr>
-                <td>A blink or muscle spasm activates the threshold and sends an unintended command.</td>
-                <td></td>
-                <td>Caregiver fatigue and alarm overload.</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>The patient performs the eye movement, but a dry electrode or baseline drift hides the signal.</td>
-                <td>Patient distress due to unmet physiological needs.</td>
-            </tr>
-        </table>
+        <div class="grid-3-table">
+            <div class="grid-3-item">
+                <strong>False positive:</strong>
+                A blink or muscle spasm activates the threshold and sends an unintended command.
+            </div>
+            <div class="grid-3-item">
+                <strong>False negative:</strong>
+                The patient performs the eye movement, but a dry electrode or baseline drift hides the signal.
+            </div>
+            <div class="grid-3-item">
+                <strong>Consequence:</strong>
+                Caregiver fatigue and alarm overload. Patient distress due to unmet physiological needs.
+            </div>
+        </div>
 
         <h3>Equity considerations:</h3>
         <p>EOG measures the retinal dipole, so it is independent of skin tone, ethnicity, or facial visual characteristics.</p>
