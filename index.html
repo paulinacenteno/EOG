@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EOG Assist - Complete Technical Report</title>
     <style>
+        /* Desplazamiento suave para los links del índice */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body { 
             font-family: "Times New Roman", Times, serif; 
             line-height: 1.6; 
@@ -20,13 +25,15 @@
             --navy: #0D47A1;
             --royal: #1976D2;
             --sky: #BBDEFB;
+            --light-blue: #90CAF9;
             --border-blue: #778da9;
+            --table-header: #c5d9f8;
         }
 
         header {
             background-color: var(--dark-blue);
             color: white;
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
             border-bottom: 6px solid var(--royal);
         }
@@ -35,6 +42,38 @@
             max-width: 1100px;
             margin: 30px auto;
             padding: 0 20px;
+        }
+
+        /* Índice de Contenido (Portada) */
+        .toc-container {
+            background: white;
+            border: 2px solid var(--border-blue);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 6px 6px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .toc-grid a {
+            background-color: var(--royal);
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .toc-grid a:hover {
+            background-color: var(--navy);
         }
 
         /* Formato de rectángulos para secciones */
@@ -61,7 +100,7 @@
             font-style: italic;
         }
 
-        /* Contenedores circulares para la etapa de IoT (Punto 5) */
+        /* Círculos para Arquitectura IoT */
         .process-circles {
             display: flex;
             justify-content: space-around;
@@ -73,8 +112,8 @@
         .circle {
             width: 160px;
             height: 160px;
-            background-color: var(--royal);
-            color: white;
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
             border-radius: 50%;
             display: flex;
             flex-direction: column;
@@ -84,13 +123,13 @@
             padding: 15px;
             font-weight: bold;
             font-size: 1rem;
-            border: 4px solid var(--sky);
+            border: 4px solid var(--royal);
             transition: transform 0.3s;
         }
 
         .circle:hover { transform: scale(1.05); }
 
-        /* Cajas de datos técnicos (Rectángulos) */
+        /* Rectángulos de información técnica */
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -105,6 +144,53 @@
             border-radius: 4px;
         }
 
+        /* Grid de 8 rectángulos para la sección 3 */
+        .grid-8 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .grid-8-item {
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
+            padding: 20px;
+            text-align: center;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .grid-8-item strong {
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Tabla de riesgos clínicos */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 2px solid var(--light-blue);
+            padding: 15px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: var(--table-header);
+            color: var(--dark-blue);
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
         footer {
             background-color: var(--dark-blue);
             color: white;
@@ -113,8 +199,14 @@
             margin-top: 60px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+            .grid-8 { grid-template-columns: repeat(2, 1fr); }
+            .toc-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
             .info-grid { grid-template-columns: 1fr; }
+            .grid-8 { grid-template-columns: 1fr; }
             section { padding: 25px; }
         }
     </style>
@@ -123,34 +215,49 @@
 
 <header>
     <h1>EOG ASSIST: EYE MOVEMENT COMMUNICATION SYSTEM</h1>
+    <p>Biomedical Instrumentation Project</p>
 </header>
 
 <div class="main-container">
 
-    <section>
+    <div class="toc-container">
+        <h2 style="border: none;">Table of Contents</h2>
+        <div class="toc-grid">
+            <a href="#sec1">1. Project Summary</a>
+            <a href="#sec2">2. Device / Sensor / IoT Equipment Description</a>
+            <a href="#sec3">3. Clinical Data Management and Flow</a>
+            <a href="#sec4">4. Regulations and Compliance</a>
+            <a href="#sec5">5. IoT System Technical Architecture</a>
+            <a href="#sec6">6. No Use of Artificial Intelligence</a>
+            <a href="#sec7">7. Users, Context, and Ethical Considerations</a>
+            <a href="#sec8">8. Scope, Limitations, and Future Work</a>
+        </div>
+    </div>
+
+    <section id="sec1">
         <h2>1. Project Summary</h2>
-        <p><strong>Clinical problem:</strong> Patients in a bedridden state have reduced mobility and severe or no speech capabilities, making them unable to efficiently communicate their basic needs.</p>
-        <p><strong>Value proposition:</strong> The system uses electrooculography (EOG) signals to translate eye movements into automated commands sent in real time via IoT, providing a non-invasive, accessible, and low-cost communication alternative.</p>
+        <p><strong>Clinical problem:</strong> Patients in a bedridden state have reduced mobility and severe or no speech capabilities, making them unable to efficiently communicate their basic needs[cite: 2122].</p>
+        <p><strong>Value proposition:</strong> The system uses electrooculography (EOG) signals to translate eye movements into automated commands sent in real time via IoT, providing a non-invasive, accessible, and low-cost communication alternative[cite: 2123].</p>
     </section>
 
-    <section>
+    <section id="sec2">
         <h2>2. Device / Sensor / IoT Equipment Description</h2>
         
         <div class="info-grid">
             <div class="data-card">
                 <h3>Sensors and Devices</h3>
                 <ul>
-                    <li>1 AD620 instrumentation amplifier</li>
-                    <li>TL084 operational amplifiers</li>
-                    <li>Arduino</li>
-                    <li>Surface electrodes (Ag/AgCl)</li>
+                    <li>1 AD620 instrumentation amplifier [cite: 2126]</li>
+                    <li>TL084 operational amplifiers [cite: 2127]</li>
+                    <li>Arduino [cite: 2128]</li>
+                    <li>Surface electrodes (Ag/AgCl) [cite: 2129]</li>
                 </ul>
             </div>
             <div class="data-card">
                 <h3>Physiological variable measured</h3>
                 <ul>
-                    <li>Ocular electrical potential (EOG)</li>
-                    <li>Unit: Volts (V-mV)</li>
+                    <li>Ocular electrical potential (EOG) [cite: 2131]</li>
+                    <li>Unit: Volts (V-mV) [cite: 2132]</li>
                 </ul>
             </div>
         </div>
@@ -159,16 +266,16 @@
             <div class="data-card">
                 <h3>Measurement & Sampling</h3>
                 <ul>
-                    <li><strong>Measurement range:</strong> 10 µV to 5 mV</li>
-                    <li><strong>Minimum required resolution:</strong> 10 µV</li>
-                    <li><strong>Sampling frequency:</strong> 250 Hz. EOG signals are low frequency (<50 Hz), so this rate avoids aliasing and captures dynamic changes.</li>
+                    <li><strong>Measurement range:</strong> 10 µV to 5 mV [cite: 2134]</li>
+                    <li><strong>Minimum required resolution:</strong> 10 µV [cite: 2135]</li>
+                    <li><strong>Sampling frequency:</strong> 250 Hz. EOG signals are low frequency (<50 Hz), so this rate avoids aliasing and captures dynamic changes[cite: 2140, 2141].</li>
                 </ul>
             </div>
             <div class="data-card">
                 <h3>Communication Protocol</h3>
                 <ul>
-                    <li>WiFi</li>
-                    <li>Protocols: HTTP or MQTT for IoT cloud connectivity</li>
+                    <li>WiFi [cite: 2137]</li>
+                    <li>Protocols: HTTP or MQTT for IoT cloud connectivity [cite: 2138]</li>
                 </ul>
             </div>
         </div>
@@ -177,115 +284,173 @@
             <div class="data-card">
                 <h3>Power supply</h3>
                 <ul>
-                    <li>Analog stage: ±12 V</li>
-                    <li>Transmission module: 3.3V to 5V</li>
-                    <li>Estimated consumption: Low (<500 mW)</li>
+                    <li>Analog stage: ±12 V [cite: 2143]</li>
+                    <li>Transmission module: 3.3V to 5V [cite: 2144]</li>
+                    <li>Estimated consumption: Low (<500 mW) [cite: 2145]</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <section>
+    <section id="sec3">
         <h2>3. Clinical Data Management and Flow</h2>
         <h3>Data pipeline</h3>
-        <p><strong>Continuous streaming:</strong> The EOG signal changes in real time according to eye movement relative to the electrodes.</p>
+        <p><strong>Continuous streaming:</strong> The EOG signal changes in real time according to eye movement relative to the electrodes[cite: 2149].</p>
+        
         <h3>On-device preprocessing:</h3>
         <ul>
-            <li>Differential amplification (high CMRR)</li>
-            <li>Low-pass filtering</li>
-            <li>Comparators for direction detection</li>
+            <li>Differential amplification (high CMRR) [cite: 2151]</li>
+            <li>Low-pass filtering [cite: 2152]</li>
+            <li>Comparators for direction detection [cite: 2153]</li>
         </ul>
+
+        <ol>
+            <li>It begins with high-gain (1000) differential amplification using the AD620 with a gain resistor close to 47 Ohms. [cite: 2154]</li>
+            <li>The next step is filtering, using an active low-pass filter with a cutoff frequency between 50–52 Hz to eliminate high-frequency noise. [cite: 2155]</li>
+            <li>Finally, analog comparator configurations are used to establish voltage thresholds to discretize direction. [cite: 2156]</li>
+        </ol>
+
+        <div class="grid-8">
+            <div class="grid-8-item">
+                <strong>Transmission format:</strong>
+                JSON, sent to the cloud (Grafana) for dashboarding. No permanent storage on the device. [cite: 2157, 2158]
+            </div>
+            <div class="grid-8-item">
+                <strong>Storage:</strong>
+                Cloud (Grafana).<br>No permanent storage on the device. [cite: 2159, 2160, 2161]
+            </div>
+            <div class="grid-8-item">
+                <strong>Retention:</strong>
+                30 seconds.<br>Data storage is not necessary since values constantly change according to patient needs. [cite: 2162, 2163, 2164]
+            </div>
+            <div class="grid-8-item">
+                <strong>Access control:</strong>
+                In this case, no patient data is stored. The interface only logs commands executed by the device based on detected EOG voltage. [cite: 2165, 2166]
+            </div>
+            <div class="grid-8-item">
+                <strong>Integrity and traceability</strong> [cite: 2167]
+            </div>
+            <div class="grid-8-item">
+                <strong>Sensor error handling:</strong>
+                Noise saturation.<br>Poor electrode placement. [cite: 2168, 2169, 2170]
+            </div>
+            <div class="grid-8-item">
+                <strong>Audit logging:</strong>
+                The cloud platform will generate audit logs documenting each event with an exact timestamp, user identifier, and detected action ("Right command/hunger activated"), enabling caregiver response time tracking. [cite: 2171, 2172]
+            </div>
+            <div class="grid-8-item">
+                <strong>Data versioning:</strong>
+                Original data is preserved. [cite: 2173, 2174]
+            </div>
+        </div>
+
     </section>
 
-    <section>
+    <section id="sec4">
         <h2>4. Regulations and Compliance</h2>
         <ul>
-            <li>IEC 60601</li>
-            <li>ISO 13485</li>
-            <li>Data protection</li>
+            <li><strong>IEC 60601 (electrical safety):</strong> Critical for the hardware stage. Since electrodes are placed on the head, isolation must be ensured to prevent electric shock or leakage microcurrents[cite: 2176].</li>
+            <li><strong>ISO 13485 (quality management):</strong> Applies to best practices in the design and manufacturing of the biomedical instrumentation prototype[cite: 2177].</li>
+            <li><strong>Data protection (HIPAA-like):</strong> Although patient records are not captured, the Wi-Fi channel must be secure to protect privacy within the home[cite: 2178].</li>
         </ul>
         <h3>Out-of-scope regulations:</h3>
         <ul>
-            <li>FDA approval</li>
-            <li>COFEPRIS: Health registration</li>
+            <li>FDA approval [cite: 2181]</li>
+            <li>COFEPRIS: Health registration [cite: 2182]</li>
         </ul>
-        <p><strong>Device classification:</strong> Class II</p>
+        <p><strong>Device classification:</strong> Class II: A non-invasive diagnostic/monitoring device whose malfunction could stress or affect the patient's level of care[cite: 2184].</p>
     </section>
 
-    <section>
+    <section id="sec5">
         <h2>5. IoT System Technical Architecture</h2>
         <h3>System layers</h3>
         
         <div class="process-circles">
-            <div class="circle">Perception</div>
-            <div class="circle">Connectivity</div>
-            <div class="circle">Processing</div>
-            <div class="circle">Application</div>
+            <div class="circle">Perception<br><span style="font-size: 0.8em; font-weight: normal; margin-top: 5px;">Electrodes, AD620, TL084, Arduino</span></div>
+            <div class="circle">Connectivity:<br><span style="font-size: 0.8em; font-weight: normal; margin-top: 5px;">Wi-Fi module coupled to the microcontroller</span></div>
+            <div class="circle">Processing<br><span style="font-size: 0.8em; font-weight: normal; margin-top: 5px;">Edge: basic detection<br>Cloud: Grafana</span></div>
+            <div class="circle">Application<br><span style="font-size: 0.8em; font-weight: normal; margin-top: 5px;">Integration with Grafana & caregiver alerts</span></div>
         </div>
 
-        <h3>Non-functional requirements</h3>
-        <ul>
-            <li><strong>Maximum latency:</strong> <1 s</li>
-            <li><strong>System availability:</strong> 95%</li>
-            <li><strong>Scalability:</strong> 1 single user</li>
-        </ul>
+        <div class="process-circles" style="margin-top: 40px;">
+            <div class="circle" style="background-color: var(--sky);">Maximum latency:<br><span style="font-size: 0.8em; font-weight: normal; margin-top: 5px;">&lt;1 s</span></div>
+            <div class="circle" style="background-color: var(--sky);">System availability:<br><span style="font-size: 0.8em; font-weight: normal; margin-top: 5px;">95%</span></div>
+            <div class="circle" style="background-color: var(--sky);">Scalability:<br><span style="font-size: 0.8em; font-weight: normal; margin-top: 5px;">Single user</span></div>
+            <div class="circle" style="background-color: var(--sky);">Energy consumption and battery life:<br><span style="font-size: 0.8em; font-weight: normal; margin-top: 5px;">Standard battery (±12 V) for prolonged operation</span></div>
+        </div>
     </section>
 
-    <section>
+    <section id="sec6">
         <h2>6. No Use of Artificial Intelligence</h2>
         <h3>Why is rule-based or threshold logic sufficient?</h3>
-        <p>EOG is directly linear with gaze angle for deviations up to approximately 30°. Using operational amplifiers configured as voltage comparators establishes efficient static thresholds for direction (e.g., positive = right, negative = left) without complex algorithmic processing.</p>
+        <p>EOG is directly linear with gaze angle for deviations up to approximately 30°[cite: 2210]. Using operational amplifiers configured as voltage comparators establishes efficient static thresholds for direction (e.g., positive = right, negative = left) without complex algorithmic processing[cite: 2211].</p>
         
         <h3>Is there clinical evidence supporting these thresholds?</h3>
-        <p>Yes, clinical guidelines from the American Academy of Sleep Medicine (AASM) support lateral electrode placement and document that eye movements generate waveforms with opposite phases or polarities.</p>
+        <p>Yes, clinical guidelines from the American Academy of Sleep Medicine (AASM) support lateral electrode placement and document that eye movements generate opposite polarities that are easily identifiable and measurable using fixed thresholds[cite: 2213].</p>
         
-        <h3>Risks avoided by not using AI</h3>
-        <p>Black box effect, algorithmic bias and dependency on prior data collection for training across different patients.</p>
+        <h3>Risks avoided by not using AI:</h3>
+        <p>Model bias, lack of data, and black-box effects are avoided. It eliminates algorithmic bias and dependency on prior data collection for training across different patients[cite: 2215, 2216].</p>
         
         <h3>When would AI be appropriate in the future?</h3>
-        <p>If there is a need to decode rapid patterns, classify complex noise (such as intentional blinks), or use smartphone cameras (computer vision) to eliminate facial electrodes.</p>
+        <p>If there is a need to decode rapid patterns, classify complex noise (such as intentional blinks), or use smartphone cameras (computer vision) to eliminate facial electrodes[cite: 2218].</p>
         
-        <h3>Advantages</h3>
-        <p>Greater transparency, lower computational cost, easier auditing. The circuit behavior is fully predictable and explainable, with reduced latency and simpler validation under medical hardware regulations.</p>
+        <h3>Advantages:</h3>
+        <p>Greater transparency, lower computational cost, easier auditing[cite: 2220]. The circuit behavior is fully predictable and explainable, with reduced latency and simpler validation under medical hardware regulations[cite: 2221].</p>
     </section>
 
-    <section>
+    <section id="sec7">
         <h2>7. Users, Clinical Context, and Ethical Considerations</h2>
-        <h3>Informed consent</h3>
-        <p>Explaining in non-technical language the non-invasive nature of EOG biopotential collection, the purpose of transmitting commands to the cloud, the technical limitations of the prototype, and the commitment to secure data handling.</p>
-        
-        <h3>Clinical risk analysis</h3>
-        <ul>
-            <li><strong>False positive (incorrect message):</strong> A blink or muscle spasm activates the threshold and sends an unintended command. <em>Consequence:</em> Caregiver fatigue and alarm overload.</li>
-            <li><strong>False negative (ignored need):</strong> The patient performs the eye movement, but a dry electrode or baseline drift hides the signal. <em>Consequence:</em> Patient distress due to unmet physiological needs.</li>
-        </ul>
+        <p><strong>User profile:</strong> Primary: Patient. Secondary: Caregiver, family member, or healthcare staff[cite: 2223, 2225, 2226].</p>
+        <p><strong>Usage environment:</strong> Home[cite: 2227].</p>
 
-        <h3>Equity considerations</h3>
-        <p>EOG measures the retinal dipole, so it is independent of skin tone, ethnicity, or facial visual characteristics.</p>
+        <h3>Informed consent:</h3>
+        <p>Before implementing the device, a form will be provided to the patient or legal guardian explaining in clear, non-technical language the non-invasive nature of EOG biopotential collection, the purpose of transmitting commands to the cloud, the technical limitations of the prototype, and the commitment to secure data handling[cite: 2229].</p>
+
+        <h3>Clinical risk analysis</h3>
+        <table>
+            <tr>
+                <th>False positive</th>
+                <th>False negative</th>
+                <th>Consequence</th>
+            </tr>
+            <tr>
+                <td>A blink or muscle spasm activates the threshold and sends an unintended command[cite: 2231].</td>
+                <td></td>
+                <td>Caregiver fatigue and alarm overload[cite: 2232].</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>The patient performs the eye movement, but a dry electrode or baseline drift hides the signal[cite: 2233].</td>
+                <td>Patient distress due to unmet physiological needs[cite: 2234].</td>
+            </tr>
+        </table>
+
+        <h3>Equity considerations:</h3>
+        <p>EOG measures the retinal dipole, so it is independent of skin tone, ethnicity, or facial visual characteristics[cite: 2236].</p>
     </section>
 
-    <section>
+    <section id="sec8">
         <h2>8. Scope, Limitations, and Future Work</h2>
         
         <div class="info-grid">
             <div class="data-card">
-                <h3>In scope</h3>
-                <p>Delivery of an analog prototype that captures horizontal and vertical eye biopotentials. Includes wireless transmission to an IoT server and real-time visualization in Grafana with basic alert triggering.</p>
+                <h3>In scope:</h3>
+                <p>Delivery of an analog prototype that captures horizontal and vertical eye biopotentials. Includes wireless transmission to an IoT server and real-time visualization in Grafana with basic alert triggering[cite: 2239, 2240].</p>
             </div>
             
             <div class="data-card">
-                <h3>Out of scope</h3>
-                <p>Medical certifications, commercial PCB design and manufacturing, and mobile app development. This is due to time constraints, limited financial resources, and clinical regulations requiring extensive testing and validation.</p>
+                <h3>Out of scope:</h3>
+                <p>Medical certifications, commercial PCB design and manufacturing, and mobile app development[cite: 2242]. This is due to time constraints, limited financial resources, and clinical regulations requiring extensive testing and validation[cite: 2243].</p>
             </div>
         </div>
 
         <h3>Hardware or data model limitations</h3>
-        <p>Noise, user movement, electrode dependency.</p>
+        <p>Noise, user movement, electrode dependency[cite: 2245].</p>
 
         <h3>Future Roadmap</h3>
         <ul>
-            <li>Improve signal filtering.</li>
-            <li>Develop a mobile app capable of detecting eye movements using the phone camera without relying on electrodes.</li>
+            <li>Improve signal filtering[cite: 2247].</li>
+            <li>Develop a mobile app capable of detecting eye movements using the phone camera without relying on electrodes[cite: 2248].</li>
         </ul>
     </section>
 
