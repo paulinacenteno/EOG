@@ -191,7 +191,7 @@
             text-align: center;
         }
 
-        /* Grid de 3 rectángulos para la sección 7 (reemplazo de tabla) */
+        /* Grid de 3 rectángulos para la sección 7 */
         .grid-3-table {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -209,11 +209,6 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-        }
-
-        .grid-3-item strong {
-            margin-bottom: 10px;
-            display: block;
         }
 
         footer {
@@ -241,7 +236,7 @@
 
 <header>
     <h1>EOG ASSIST: EYE MOVEMENT COMMUNICATION SYSTEM</h1>
-    <p>Biomedical Instrumentation Project</p>
+    <p>Selected Topics 3 project - Paulina Centeno</p>
 </header>
 
 <div class="main-container">
@@ -314,6 +309,7 @@
                     <li>Analog stage: ±12 V</li>
                     <li>Transmission module: 3.3V to 5V</li>
                     <li>Estimated consumption: Low (<500 mW)</li>
+                    <li><strong>System block diagram</strong></li>
                 </ul>
             </div>
         </div>
@@ -356,7 +352,8 @@
                 In this case, no patient data is stored. The interface only logs commands executed by the device based on detected EOG voltage.
             </div>
             <div class="grid-8-item">
-                <strong>Integrity and traceability</strong>
+                <strong>Integrity and traceability:</strong>
+                Data integrity is guaranteed by preserving the original data and utilizing secure transmission protocols. Traceability is ensured through cloud-based audit logs that document every event with a timestamp, User ID, and the detected action for precise clinical monitoring.
             </div>
             <div class="grid-8-item">
                 <strong>Sensor error handling:</strong>
@@ -386,6 +383,8 @@
             <li>FDA approval</li>
             <li>COFEPRIS: Health registration</li>
         </ul>
+        <p>This project cannot obtain COFEPRIS or FDA certification because it is only an academic prototype, not a fully developed medical device. It lacks clinical trials to prove safety and effectiveness, does not follow certified quality standards, and has no complete risk management or regulatory documentation. Additionally, aspects like data security and system validation are still incomplete. Therefore, it is not ready for regulatory approval.</p>
+        
         <p><strong>Device classification:</strong> Class II: A non-invasive diagnostic/monitoring device whose malfunction could stress or affect the patient's level of care.</p>
     </section>
 
