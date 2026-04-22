@@ -1,12 +1,11 @@
 # EOG Assist 
-
-Este repositorio contiene la página web estática para el sistema de comunicación por movimiento ocular **EOG Assist**.
+En este apartado se muestra la página web estática para el sistema de comunicación por movimiento ocular **EOG Assist**.
 
 ## Instrucciones para reproducir el sitio:
-1. Clonar este repositorio o descargar el archivo `index.html`.
-2. Abrir el archivo `index.html` en cualquier navegador web moderno (Chrome, Firefox, Safari).
-3. No se requieren dependencias externas ni servidores especiales, ya que es HTML/CSS puro.
+1.  Descargar el archivo `index.html`.
+2. Abrir el archivo `index.html` en un navegador web
+3. No se requieren servidores especiales.
 
-## Detalles de despliegue:
-* Desplegado automáticamente mediante **Netlify**.
-* Diseño responsivo (adaptable a móviles y escritorio).
+## Despliegue:
+* Es automático usando **Netlify**.
+* Adaptable a móviles y escritorio.
